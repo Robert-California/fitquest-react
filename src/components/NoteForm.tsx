@@ -27,12 +27,14 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
     const handleChange = (event: any, setStateFunc: (value: any) => void) => {
         setStateFunc(event.target.value); // Opdaterer state-værdien med den nye værdi fra input-feltet
     }
+
+    // Funktion, der håndterer ændringer i dropdown-menuen
     const handleSelectChange = (event: any) => {
         setExercise(event.target.value);
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} >
             <select name="exercise" onChange={handleSelectChange} value={exercise}>
                 <option value="" disabled hidden>
                     Vælg øvelse
@@ -60,7 +62,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
                     placeholderText="Vælg dato"
                 />
             </div>
-            <button type="submit">Tilføj</button>
+            <button className="bg-blue-700" type="submit">Tilføj</button>
         </form>
     );
 }
