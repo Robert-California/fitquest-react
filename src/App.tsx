@@ -6,7 +6,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-gray-100 min-h-screen">
+      <div>
         <main className="flex-grow p-4">
           <Routes>
             <Route path="/notepage" element={<NotePage />} />

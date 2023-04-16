@@ -11,8 +11,8 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
 
     // useState-hooks til at håndtere værdierne i form-felterne
     const [exercise, setExercise] = useState<string>("");
-    const [weight, setWeight] = useState<number>(0);
-    const [reps, setReps] = useState<number>(0);
+    const [weight, setWeight] = useState<string | number>("");
+    const [reps, setReps] = useState<string | number>("");
     const [date, setDate] = useState<Date | null>(null);
 
     // Funktion, der håndterer indsendelse af formularen, når submit-knappen trykkes på
@@ -20,7 +20,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
         event.preventDefault(); // Forhindrer standard opførsel
         const currentDate = new Date();
         const selectedDate = date || currentDate;
-        onSubmit({ exercise, weight, reps, date: selectedDate }); // Kalder onSubmit-prop'en(addNote) med nuværende værdi for exercise, weight og reps
+        onSubmit({ exercise, weight: Number(weight), reps: Number(weight), date: selectedDate }); // Kalder onSubmit-prop'en(addNote) med nuværende værdi for exercise, weight og reps
     };
 
     // Funktion, der opdaterer nuværende værdi for en input-værdi, når den ændres
@@ -34,7 +34,8 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
     };
 
     return (
-        <form onSubmit={handleSubmit} >
+
+        <form onSubmit={handleSubmit} className="flex flex-col w-40">
             <select name="exercise" onChange={handleSelectChange} value={exercise}>
                 <option value="" disabled hidden>
                     Vælg øvelse

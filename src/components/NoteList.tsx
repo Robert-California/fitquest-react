@@ -9,7 +9,7 @@ const NoteList: React.FC<NoteListProps> = ({ notes }) => {
     return (
         <ul>
             {notes.map((note, index) => (
-                <li key={index}>
+                <li className="bg-white" key={index}>
                     {note.exercise}, {note.weight} kg, {note.reps} reps, {note.date.toLocaleDateString()}
                 </li>
             ))}
