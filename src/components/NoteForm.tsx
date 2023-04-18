@@ -14,6 +14,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
     const [weight, setWeight] = useState<string | number>("");
     const [reps, setReps] = useState<string | number>("");
     const [date, setDate] = useState<Date | null>(null);
+    const [number, setNumber] = useState<number>(0);
 
     // Funktion, der håndterer indsendelse af formularen, når submit-knappen trykkes på
     const handleSubmit = (event: any) => {
@@ -22,11 +23,6 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
         const selectedDate = date || currentDate;
         onSubmit({ exercise, weight: Number(weight), reps: Number(weight), date: selectedDate }); // Kalder onSubmit-prop'en(addNote) med nuværende værdi for exercise, weight og reps
     };
-
-    // Funktion, der opdaterer nuværende værdi for en input-værdi, når den ændres
-    const handleChange = (event: any, setStateFunc: (value: any) => void) => {
-        setStateFunc(event.target.value); // Opdaterer state-værdien med den nye værdi fra input-feltet
-    }
 
     // Funktion, der håndterer ændringer i dropdown-menuen
     const handleSelectChange = (event: any) => {
@@ -48,13 +44,13 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit }) => {
                 type="text"
                 value={weight}
                 placeholder="Vægt i KG"
-                onChange={(event) => handleChange(event, setWeight)} // Kalder handleChange med event-objektet og funktionen til at opdatere state-værdien
+                onChange={e => setExercise(e.target.value)} // Kalder handleChange med event-objektet og funktionen til at opdatere state-værdien
             />
             <input
                 type="text"
                 value={reps}
                 placeholder="Reps"
-                onChange={(event) => handleChange(event, setReps)}
+                onChange={e => setReps(e.target.value)}
             />
             <div>
                 <DatePicker
