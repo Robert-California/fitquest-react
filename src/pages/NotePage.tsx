@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import NoteForm from "../components/NoteForm";
 import NoteList from "../components/NoteList";
 import { collection, addDoc, onSnapshot, query, orderBy, QuerySnapshot } from "firebase/firestore";
-
+import ProgressChart from "../components/ProgessChart";
 import firestore from "../firebase";
 
 
@@ -14,6 +14,7 @@ const NotePage: React.FC = () => {
     const [notes, setNotes] = useState<
         { exercise: string; weight: number; reps: number; date: Date }[]
     >([]);
+    const [selectedExercise, setSelectedExercise] = useState<string>("");
 
     useEffect(() => {
         const notesCollection = collection(firestore, "notes");
@@ -46,12 +47,10 @@ const NotePage: React.FC = () => {
     return (
         <div>
             {/* NoteForm komponenten modtager onSubmit som en prop og sætter den til addNote funktionen */}
-            <NoteForm onSubmit={addNote} />
+            <NoteForm onSubmit={addNote} onExerciseChange={setSelectedExercise} />
             {/* NoteList komponenten modtager notes som en prop */}
             <NoteList notes={notes} />
-            <h1 className="text-3xl font-bold underline">
-                Hello world!
-            </h1>
+            <ProgressChart data={notes} selectedExercise={selectedExercise} />
         </div>
     );
 };
