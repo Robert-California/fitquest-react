@@ -69,13 +69,22 @@ const NotePage: React.FC = () => {
       };
       
   
-    return (
-      <div>
-        <NoteForm onSubmit={addNote} onExerciseChange={setSelectedExercise} />
-        <NoteList notes={notes} onDelete={deleteNote} />
-        <ProgressChart data={notes} selectedExercise={selectedExercise} />
-      </div>
-    );
+      return (
+        <div className="bg-gray-100 min-h-screen">
+          <div className="flex justify-center ml-4 py-6">
+            <ProgressChart data={notes} selectedExercise={selectedExercise} />
+          </div>
+          <div className="max-w-lg mx-auto flex flex-row items-start space-x-4 py-6 p-4">
+            <div className="rounded-lg shadow-lg border-2 border-gray-300 p-4">
+            <NoteForm onSubmit={addNote} onExerciseChange={setSelectedExercise} />
+            </div>
+            <div className="ml-4 rounded-lg shadow-lg border-2 border-gray-300 p-4">
+              <NoteList notes={notes} onDelete={deleteNote} />
+            </div>
+          </div>
+        </div>
+      );
+      
   };
 
 

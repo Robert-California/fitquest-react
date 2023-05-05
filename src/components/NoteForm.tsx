@@ -35,7 +35,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onExerciseChange }) => {
 
     return (
 
-        <form onSubmit={handleSubmit} className="flex flex-col w-40">
+        <form onSubmit={handleSubmit} className="flex flex-col w-48">
             <select name="exercise" onChange={handleSelectChange} value={exercise}>
                 <option value="" disabled hidden>
                     Vælg øvelse
@@ -56,7 +56,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onExerciseChange }) => {
                 placeholder="Reps"
                 onChange={e => setReps(e.target.value)}
             />
-            <div>
+            <div >
                 <DatePicker
                     selected={date}
                     onChange={(date) => setDate(date)}

@@ -9,7 +9,7 @@ function App() {
       <div>
         <main className="flex-grow p-4">
           <Routes>
-            <Route path="/notepage" element={<NotePage />} />
+            <Route path="/" element={<NotePage />} />
           </Routes>
         </main>
       </div>
