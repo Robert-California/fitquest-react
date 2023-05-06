@@ -1,20 +1,26 @@
-
-import { Route, Routes } from "react-router-dom";
+import React from 'react';
 import NotePage from './pages/NotePage';
-function App() {
+import LoginPage from './pages/LoginPage';
+import useAuth from './hooks/useAuth';
+import { Navigate, Route, Routes } from 'react-router-dom';
 
+function App() {
+  const { user, signOutUser } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOutUser();
+  };
 
   return (
-    <>
-      <div>
-        <main className="flex-grow p-4">
-          <Routes>
-            <Route path="/" element={<NotePage />} />
-          </Routes>
-        </main>
-      </div>
-    </>
-  )
+    <Routes>
+      <Route
+        path="/"
+        element={user ? <Navigate to="/notepage" /> : <LoginPage onSignOut={handleSignOut} />}
+      />
+      <Route path="/notepage" element={<NotePage onSignOut={handleSignOut} />} />
+    </Routes>
+  );
 }
 
-export default App
+export default App;
+

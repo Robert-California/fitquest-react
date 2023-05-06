@@ -24,6 +24,10 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onExerciseChange }) => {
         const currentDate = new Date();
         const selectedDate = date || currentDate;
         onSubmit({ exercise, weight: Number(weight), reps: Number(reps), date: selectedDate }); // Kalder onSubmit-prop'en(addNote) med nuværende værdi for exercise, weight og reps
+        setExercise("");
+        setWeight("");
+        setReps("");
+        setDate(null);
     };
 
     // Funktion, der håndterer ændringer i dropdown-menuen
@@ -63,7 +67,7 @@ const NoteForm: React.FC<NoteFormProps> = ({ onSubmit, onExerciseChange }) => {
                     placeholderText="Vælg dato"
                 />
             </div>
-            <button className="bg-blue-700" type="submit">Tilføj</button>
+            <button className="text-gray-900 bg-gradient-to-r from-red-200 via-red-300 to-yellow-200 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-red-100 dark:focus:ring-red-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" type="submit">Tilføj</button>
         </form>
     );
 }
