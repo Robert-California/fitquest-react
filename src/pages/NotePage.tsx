@@ -11,9 +11,10 @@ import { Navigate, useNavigate } from 'react-router-dom';
 
 interface NotePageProps {
   onSignOut: () => void;
+  displayName: string | null;
 }
 
-const NotePage: React.FC<NotePageProps> = () => {
+const NotePage: React.FC<NotePageProps> = ({ onSignOut, displayName }) => {
   console.log('NotePage is rendering'); // Add this line
   const [notes, setNotes] = useState<
     { exercise: string; weight: number; reps: number; date: Date }[]
@@ -23,6 +24,7 @@ const NotePage: React.FC<NotePageProps> = () => {
   const notesCollection = collection(firestore, 'notes');
   const notesQuery = query(notesCollection, orderBy('date'));
   const {signOutUser} = useAuth();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onSnapshot(notesQuery, (snapshot: QuerySnapshot) => {
@@ -44,7 +46,6 @@ const NotePage: React.FC<NotePageProps> = () => {
   }, []);
 
   const signOut = async () =>{
-    const navigate = useNavigate();
     await signOutUser();
     navigate("/")
   }
@@ -82,6 +83,10 @@ const NotePage: React.FC<NotePageProps> = () => {
     };
 
   return (
+    <div>
+      <div>
+        Welcome {displayName}
+      </div>
     <div className="bg-gray-100 min-h-screen">
       <div className="flex justify-center ml-4 py-6">
         <ProgressChart data={notes} selectedExercise={selectedExercise} />
@@ -95,6 +100,7 @@ const NotePage: React.FC<NotePageProps> = () => {
         </div>
       </div>
       <button onClick={signOut}>Sign Out</button>
+    </div>
     </div>
   );
 };

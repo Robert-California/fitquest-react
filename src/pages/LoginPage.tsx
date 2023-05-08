@@ -2,12 +2,9 @@ import React, { useEffect } from 'react';
 import useAuth from '../hooks/useAuth';
 import { useNavigate } from 'react-router-dom';
 
-interface LoginPageProps {
-  onSignOut: () => void;
- // name: (user: string) => void;
-}
 
-const LoginPage: React.FC<LoginPageProps> = () => {
+
+const LoginPage: React.FC = () => {
   const { user, signInWithGoogle } = useAuth();
   const navigate = useNavigate();
 

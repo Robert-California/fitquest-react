@@ -15,9 +15,10 @@ function App() {
     <Routes>
       <Route
         path="/"
-        element={user ? <Navigate to="/notepage" /> : <LoginPage onSignOut={handleSignOut} />}
+        element={user ? <Navigate to="/notepage" /> : <Navigate to="/loginpage" />}
       />
-      <Route path="/notepage" element={<NotePage onSignOut={handleSignOut} />} />
+      <Route path="/loginpage" element={<LoginPage />} />
+      <Route path="/notepage" element={<NotePage onSignOut={handleSignOut} displayName={user?.displayName || null}/>} />
     </Routes>
   );
 }
